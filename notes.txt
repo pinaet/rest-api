@@ -1,0 +1,2 @@
+A SPECIFICATION FOR BUILDING APIS IN JSON
+https://jsonapi.org/
