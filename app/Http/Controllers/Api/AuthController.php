@@ -26,7 +26,10 @@ class AuthController extends Controller
         return $this->ok(
             'Authenticated',
             [
-                'token' => $user->createToken('API token for ' . $user->email)->plainTextToken
+                'token' => $user->createToken(
+                    'API token for ' . $user->email,
+                    ['*'],
+                    now()->addMonth())->plainTextToken
             ]
         );
     }
@@ -34,5 +37,12 @@ class AuthController extends Controller
     public function register()
     {
         return $this->ok('Register','data');
+    }
+
+    public function logout(Request $request)
+    {
+        // return $request->user()->tokens()->where('id',$tokenId)->delete();
+        $request->user()->currentAccessToken()->delete();
+        return $this->ok('');
     }
 }
