@@ -9,3 +9,4 @@ php artisan make:controller Api\V1\AuthorsController --resource --model=User --r
 php artisan make:resource V1\UserResource
 
 php artisan make:controller Api\V1\AuthorTicketsController
+php artisan route:list
