@@ -10,3 +10,5 @@ php artisan make:resource V1\UserResource
 
 php artisan make:controller Api\V1\AuthorTicketsController
 php artisan route:list
+
+php artisan make:policy V1\TicketPolicy
