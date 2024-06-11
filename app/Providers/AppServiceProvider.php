@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use App\Models\Ticket;
+use App\Policies\V1\UserPolicy;
 use App\Policies\V1\TicketPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -29,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
 
 
         Gate::policy(Ticket::class, TicketPolicy::class);
+        Gate::policy(User::class, UserPolicy::class);
     }
 }
