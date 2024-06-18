@@ -18,3 +18,8 @@ php artisan db:seed
 user=1,ticket_id=17
 user=3|hRzrBK8fI78C4G7RFu8RwCERrlGPwJhttZzXxeFWbd9aa2c4
 mngr=4|MXDrmU6qZLLYHdPR01C0a2XCWUNaZWcD5IekQdFe1649062c
+
+composer require --dev knuckleswtf/scribe
+php artisan vendor:publish --tag=scribe-config
+php artisan scribe:generate
+

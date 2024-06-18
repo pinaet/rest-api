@@ -1,0 +1,3451 @@
+openapi: 3.0.3
+info:
+  title: 'Ticket Please API Documentation'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8000'
+paths:
+  /api/login:
+    post:
+      summary: Login
+      operationId: login
+      description: "Authenticates the user and returns the user's API token."
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    token: '{YOUR_AUTH_KEY}'
+                  message: Authenticated
+                  status: 200
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: '{YOUR_AUTH_KEY}'
+                  message:
+                    type: string
+                    example: Authenticated
+                  status:
+                    type: integer
+                    example: 200
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: ewillms@example.com
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: 'x*+0GJIccc1$'
+              required:
+                - email
+                - password
+      security: []
+  /api/logout:
+    post:
+      summary: Logout
+      operationId: logout
+      description: "Signs out the user and destroy's the API token."
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Authentication
+  /api/register:
+    post:
+      summary: ''
+      operationId: postApiRegister
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+  /api/tickets:
+    get:
+      summary: ''
+      operationId: getApiTickets
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    user_id: 3
+                    title: 'illo quia optio'
+                    description: 'Ratione asperiores quasi sapiente molestiae quidem id ullam ex. Consequatur repellendus qui est est deleniti quidem. Sit ut et ut autem. Id iusto ullam sapiente hic deleniti aspernatur dolorem.'
+                    status: C
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T05:53:04.000000Z'
+                  -
+                    id: 2
+                    user_id: 6
+                    title: 'eum cupiditate cupiditate'
+                    description: 'Autem beatae quia et aut culpa nostrum. Odit unde quo voluptatem non fugit officia molestiae alias. Hic corporis asperiores unde a voluptates. Inventore ipsa aut qui sunt. Doloremque eligendi non ea quidem.'
+                    status: C
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 3
+                    user_id: 6
+                    title: 'rem id alias'
+                    description: 'Sit ut incidunt nobis corrupti voluptas. Molestiae nihil qui qui deleniti. Libero facilis harum totam sit beatae est.'
+                    status: A
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 4
+                    user_id: 4
+                    title: 'iste tempora repellat'
+                    description: 'Aut ipsum ut et totam ut eos culpa. Voluptatem quisquam provident cum et. Eos enim esse animi magnam. Iusto sit suscipit porro consequatur sed quis nulla.'
+                    status: H
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 5
+                    user_id: 8
+                    title: 'dolores sit voluptatum'
+                    description: 'Earum praesentium aut adipisci qui dolores. Minima qui quia occaecati molestiae et beatae consequatur. Earum tempora deserunt omnis quo quis.'
+                    status: X
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 6
+                    user_id: 5
+                    title: 'quam porro quos'
+                    description: 'Voluptatem voluptatem distinctio debitis aut. Ea in voluptatibus voluptas animi voluptas. Sed consequuntur qui qui non.'
+                    status: X
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 7
+                    user_id: 4
+                    title: 'natus laboriosam sunt'
+                    description: 'Aut ex enim eaque et occaecati error. Et possimus ea laboriosam sed. Quibusdam saepe aut veritatis beatae natus quod et.'
+                    status: X
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 8
+                    user_id: 6
+                    title: 'et consequatur est'
+                    description: 'Consequatur veniam rerum illum id animi voluptatem. Esse quibusdam sunt illo exercitationem commodi cum. Sapiente porro aliquid neque quia tenetur sed nobis. Et aut dignissimos itaque autem commodi.'
+                    status: A
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 9
+                    user_id: 8
+                    title: 'officiis amet reiciendis'
+                    description: 'Et minima rerum debitis blanditiis cumque voluptatibus dolorem. Mollitia enim aliquid et et explicabo quia ut enim. Quam natus praesentium qui quas.'
+                    status: H
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 10
+                    user_id: 4
+                    title: 'et hic error'
+                    description: 'Autem ut doloribus dolor ipsa ipsum. Voluptatem nostrum et consectetur dolores officia.'
+                    status: A
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 11
+                    user_id: 3
+                    title: 'assumenda quibusdam iusto'
+                    description: 'Laborum reprehenderit aperiam voluptatum officiis soluta omnis. Dignissimos sit quo tempora assumenda sequi quis. Quibusdam qui aut excepturi perspiciatis porro numquam aliquam amet. Id sed quisquam aliquam itaque itaque quis.'
+                    status: X
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 12
+                    user_id: 4
+                    title: 'aut fugit sit'
+                    description: 'Et impedit eos recusandae ut error id. Nisi beatae dolor tempora voluptatem eligendi. Aut error tempora nostrum occaecati deserunt quis.'
+                    status: X
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 13
+                    user_id: 3
+                    title: 'saepe aut id'
+                    description: 'Odio facilis sunt ab consequatur error architecto. Aut deserunt et doloremque recusandae quod dignissimos. Autem illum tenetur sint expedita eum. Sint porro dolorum minus tempore esse qui porro.'
+                    status: C
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 14
+                    user_id: 6
+                    title: 'voluptatum fuga quidem'
+                    description: 'Pariatur totam illo veniam qui voluptatibus nulla officia beatae. Molestiae nihil voluptatem et. Et labore quidem fugiat iste totam. Dolores itaque et voluptatem maiores culpa voluptas voluptas. In itaque optio omnis quia illum.'
+                    status: H
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 15
+                    user_id: 8
+                    title: 'atque exercitationem accusantium'
+                    description: 'Impedit fugit architecto esse aperiam aperiam totam illo aut. Ut iste dolorem fugiat minima. Et earum voluptate asperiores non. Omnis similique excepturi voluptatem fuga eos dignissimos libero eos. Qui beatae tempore molestiae molestiae laudantium molestias.'
+                    status: C
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 16
+                    user_id: 2
+                    title: 'dicta est quis'
+                    description: 'Eum architecto qui deleniti commodi sint libero eius. Laudantium magni debitis iste sint ea. Culpa quam dolores qui delectus dolor aliquam quaerat laudantium. Magnam soluta in quam veritatis enim corporis a.'
+                    status: A
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 17
+                    user_id: 1
+                    title: 'Patch Ticket'
+                    description: 'Nihil deserunt ipsum magni aut. Unde tempore rerum saepe reprehenderit officiis. Ut voluptatem corporis dolore quos rerum. Accusamus ad delectus sit perferendis.'
+                    status: C
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-12T03:37:43.000000Z'
+                  -
+                    id: 18
+                    user_id: 10
+                    title: 'veniam ipsam quibusdam'
+                    description: 'Commodi esse ipsum sed consectetur. Eos amet libero earum aut asperiores facere ut. Et doloribus nostrum ut et sed.'
+                    status: C
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 19
+                    user_id: 2
+                    title: 'et vero officiis'
+                    description: 'Numquam corporis magnam blanditiis cupiditate. Dolorem dolorem illo et veniam perferendis autem. Inventore suscipit cupiditate error velit nam itaque.'
+                    status: X
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 20
+                    user_id: 10
+                    title: 'veritatis neque quas'
+                    description: 'Quam quos deleniti quo rerum dolore. Fuga distinctio minus est deleniti facere sunt. Accusamus eos eveniet dolores distinctio dolore.'
+                    status: H
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 21
+                    user_id: 8
+                    title: 'fugiat neque nihil'
+                    description: 'Harum omnis dolore est voluptatem rerum accusantium recusandae. Accusamus id maxime perspiciatis odio velit soluta. Magni aut et ut pariatur. Quia veritatis qui illum deleniti.'
+                    status: X
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 22
+                    user_id: 9
+                    title: 'rerum repudiandae quos'
+                    description: 'Velit qui quia vel eos inventore ipsa. Qui sed quis et recusandae. Debitis est aut alias nobis animi.'
+                    status: A
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 23
+                    user_id: 2
+                    title: 'nisi numquam ipsa'
+                    description: 'Ab et voluptates dolore nobis quas. Harum sit autem fuga maiores at. Ea sequi hic provident voluptas et ex. Voluptatem nemo aliquid id qui nostrum esse sed.'
+                    status: C
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 24
+                    user_id: 6
+                    title: 'quam explicabo dolor'
+                    description: 'Aliquam minima debitis deserunt. Et pariatur non voluptatem atque. Eius enim tenetur quod sint ut. Quasi quibusdam et voluptatibus dolorem commodi eaque. Nobis alias tempore sunt eveniet nihil facere unde.'
+                    status: X
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 25
+                    user_id: 2
+                    title: 'consequatur est est'
+                    description: 'Id hic modi hic. Et dolorem ducimus sit nobis qui sit. Dolorum nesciunt reprehenderit laborum quis sunt similique iusto. Facere dignissimos animi modi voluptatem non sed minima et.'
+                    status: A
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 26
+                    user_id: 4
+                    title: 'ut ea non'
+                    description: 'Consequatur dicta sint officiis eos autem qui ipsum. Fuga voluptatem hic voluptatem reprehenderit aliquid optio. Sapiente aut eum ex cum et harum iusto. Nemo nostrum eligendi nostrum molestiae vitae cum enim.'
+                    status: H
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 27
+                    user_id: 2
+                    title: 'eos enim consequatur'
+                    description: 'Qui quasi amet dignissimos assumenda iste saepe doloremque. Optio libero ut beatae aut omnis quas consequatur. Tempora et vel voluptate omnis autem placeat.'
+                    status: X
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 28
+                    user_id: 7
+                    title: 'voluptate rerum modi'
+                    description: 'Molestias harum ut et pariatur necessitatibus voluptates nobis. Occaecati facere deleniti debitis eius ipsam occaecati qui nihil. Qui voluptates modi aut dolores delectus. Libero quaerat esse vel officiis numquam.'
+                    status: A
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 29
+                    user_id: 1
+                    title: 'architecto voluptatem porro'
+                    description: 'Qui similique quis aut quis hic numquam vel. Eum ipsa rerum enim.'
+                    status: A
+                    created_at: '2024-06-10T04:36:12.000000Z'
+                    updated_at: '2024-06-10T04:36:12.000000Z'
+                  -
+                    id: 30
+                    user_id: 5
+                    title: 'quos asperiores ex'
+                    description: 'Id quibusdam deserunt vel nihil sed. Unde est et cupiditate ipsum omnis adipisci saepe. Vel et sunt aut facere.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 31
+                    user_id: 3
+                    title: 'molestiae inventore necessitatibus'
+                    description: 'Labore doloribus ut et sunt quae voluptatibus possimus. Laborum nisi necessitatibus blanditiis ratione quaerat. Ea accusantium sunt odio perspiciatis at dolores quis.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 32
+                    user_id: 9
+                    title: 'nihil ea suscipit'
+                    description: 'Quod magni et pariatur quis qui ad nam. Qui qui inventore molestiae et voluptas incidunt ab tempora. Dicta dolorem quas dolores neque. Atque impedit qui qui facere. Occaecati quia aut omnis ut.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 33
+                    user_id: 10
+                    title: 'facere delectus provident'
+                    description: 'Voluptatem rem aut quisquam eum enim. Vel mollitia et vel ea. Optio aspernatur inventore id aperiam sint. Ut omnis molestiae perferendis adipisci ut aut.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 34
+                    user_id: 2
+                    title: 'pariatur pariatur animi'
+                    description: 'In rerum iste omnis qui. Aspernatur sit libero hic ea et. Beatae quo magni exercitationem laboriosam nulla quidem.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 35
+                    user_id: 6
+                    title: 'facere dolorem quis'
+                    description: 'Praesentium animi nemo iure nemo animi quibusdam. Eaque quod atque facere corrupti odio aut totam. Natus numquam quis in sed dolorem voluptatum quae. Assumenda qui quae aut rerum placeat ullam velit. Eos consequuntur animi porro ut ea beatae.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 36
+                    user_id: 3
+                    title: 'eveniet in ullam'
+                    description: 'Cupiditate autem est voluptas cumque voluptatum. Harum dolorum commodi sit. Id tempore veritatis fugiat dicta rerum.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 37
+                    user_id: 6
+                    title: 'asperiores sit quis'
+                    description: 'Tempore numquam quia excepturi provident amet. Est totam aspernatur consequatur esse quia atque consequatur. Veniam rerum consectetur distinctio aut dolor.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 38
+                    user_id: 2
+                    title: 'molestiae nesciunt ducimus'
+                    description: 'Et nemo quas ipsum suscipit vel voluptatem. Voluptas est magnam fugiat repellat suscipit. Amet odio eaque et sed voluptatem vel.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 39
+                    user_id: 1
+                    title: 'maxime explicabo qui'
+                    description: 'Tempore odio labore a sequi. Nisi nobis ea dolor et numquam nobis. Excepturi nam eaque voluptatibus laudantium rerum tempora.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 40
+                    user_id: 6
+                    title: 'qui repellat quis'
+                    description: 'Assumenda dolor reprehenderit omnis iusto voluptatem facilis sit alias. Veniam saepe qui debitis explicabo omnis. Id et veritatis soluta veritatis ex fuga fugit.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 41
+                    user_id: 4
+                    title: 'repellendus voluptatem harum'
+                    description: 'Quibusdam perferendis explicabo velit alias dolores dolor deleniti ut. Molestias recusandae libero exercitationem neque voluptatem tempore. Rerum et assumenda velit voluptatum. Consequatur officia aut architecto ipsam at sed.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 42
+                    user_id: 9
+                    title: 'ipsum voluptatem sunt'
+                    description: 'Ut commodi laboriosam quam est doloribus rerum dicta. Ducimus blanditiis excepturi iure eaque molestiae atque. Placeat atque possimus voluptatem ut odit voluptatem quia.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 43
+                    user_id: 3
+                    title: 'reprehenderit rerum officiis'
+                    description: 'Velit voluptas perferendis totam commodi. Eligendi eligendi quis et esse qui voluptatibus veritatis. Corrupti ab repellendus pariatur. Et voluptates totam atque sint exercitationem.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 44
+                    user_id: 9
+                    title: 'error voluptatibus exercitationem'
+                    description: 'Aut quo placeat excepturi in ut ut modi. Quos delectus est mollitia qui sed molestiae.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 45
+                    user_id: 7
+                    title: 'et ab qui'
+                    description: 'Quibusdam error ut veritatis quo dolor sunt. Numquam iure aliquam blanditiis. Itaque in quibusdam animi assumenda sit eum sunt. Necessitatibus sed explicabo qui accusamus sit quis quos. Amet quia esse dolorem.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 46
+                    user_id: 2
+                    title: 'rerum placeat ea'
+                    description: 'Corporis omnis distinctio ducimus alias qui. Qui nihil laboriosam dolor iure et ut fugiat.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 47
+                    user_id: 8
+                    title: 'facere ut sint'
+                    description: 'Quam occaecati sunt eos est placeat esse. Deserunt quibusdam esse repellat nihil debitis sed. Occaecati dolores eaque totam minima. Eum itaque et molestiae quia sapiente.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 48
+                    user_id: 7
+                    title: 'et impedit et'
+                    description: 'Pariatur est illo architecto et debitis dolorem. Iure voluptatibus rerum omnis a.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 49
+                    user_id: 9
+                    title: 'occaecati et magni'
+                    description: 'Est tempore non voluptatem delectus reiciendis laborum rerum. Ut animi et saepe qui quo consequuntur ipsum. Impedit dignissimos incidunt vero debitis sint impedit. Hic quod possimus omnis earum consequatur velit.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 50
+                    user_id: 7
+                    title: 'autem omnis ut'
+                    description: 'Molestiae sint voluptatibus et excepturi enim quibusdam. Asperiores similique et exercitationem unde quasi impedit nemo. Nulla sunt non repudiandae et facere et. Et ea est non neque voluptate nihil quasi.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 51
+                    user_id: 5
+                    title: 'laboriosam quis veritatis'
+                    description: 'Est distinctio nesciunt nisi ut occaecati veniam et. Tempora earum libero dolor dolorum. Eius quam amet voluptatibus illum.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 52
+                    user_id: 10
+                    title: 'qui voluptas voluptas'
+                    description: 'Ad eum ut nisi quia illum ipsam enim. Velit quidem accusantium ipsam laboriosam doloremque. Commodi et non sunt earum.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 53
+                    user_id: 8
+                    title: 'soluta atque est'
+                    description: 'Nihil voluptatum dolorem vero impedit aperiam facere itaque. Cumque sed quia maxime perspiciatis dolor aut soluta. Optio porro officia quae sunt occaecati a. Commodi amet sed doloribus minus ut.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 54
+                    user_id: 9
+                    title: 'fugiat eveniet sunt'
+                    description: 'Sit nostrum eum mollitia ducimus. Dolores est cumque odit accusamus qui omnis. Unde earum placeat quia. Qui distinctio ad consectetur aspernatur.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 55
+                    user_id: 6
+                    title: 'quisquam quis veritatis'
+                    description: 'Quibusdam occaecati voluptas quasi. Eum est aspernatur pariatur minima perferendis quo dolor. Id facilis enim officia pariatur qui officiis. Maiores quis quo facilis impedit harum est corrupti itaque.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 56
+                    user_id: 6
+                    title: 'ut possimus dolorem'
+                    description: 'Velit eum labore aspernatur quas quia. Numquam magnam corrupti velit molestiae commodi dicta earum et. Qui doloribus laudantium accusamus voluptate qui blanditiis.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 57
+                    user_id: 3
+                    title: 'ut deserunt error'
+                    description: 'Non et animi suscipit ut. Consequatur sunt omnis quia illo culpa omnis. Temporibus neque et ad nobis. Atque illum libero totam quae molestiae ex quos.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 58
+                    user_id: 7
+                    title: 'consequatur vel temporibus'
+                    description: 'At earum reprehenderit repellat eos nisi aut praesentium. Sit qui dignissimos dolorem dolores aut doloremque. Dolorem distinctio saepe hic sit aut fugiat. At neque ut et ad.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 59
+                    user_id: 10
+                    title: 'laboriosam provident molestiae'
+                    description: 'Maxime nihil maiores ipsam explicabo et atque. Vero sed rerum consequuntur.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 60
+                    user_id: 2
+                    title: 'ipsum labore autem'
+                    description: 'Rerum quam quo et eum. Numquam est tempora rerum. Et ut magnam sunt. Consequuntur similique deleniti ab.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 61
+                    user_id: 5
+                    title: 'doloribus qui fuga'
+                    description: 'Pariatur molestiae repellendus cumque inventore impedit et. Molestias et sed dolorem sint. Doloribus iure incidunt rem fugiat qui culpa.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 62
+                    user_id: 6
+                    title: 'sunt officia nobis'
+                    description: 'Rem praesentium est rerum autem provident. Voluptas enim qui ipsa facere deleniti voluptate.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 63
+                    user_id: 1
+                    title: 'omnis itaque error'
+                    description: 'Fugiat aliquid velit voluptate. Esse quia omnis et doloribus vel. Praesentium incidunt corporis aut et voluptate et. Accusantium sed laboriosam dolorem officiis voluptates est illo nostrum.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 64
+                    user_id: 1
+                    title: 'et sapiente ipsum'
+                    description: 'Qui voluptates ducimus consectetur et. Ut minima sint repudiandae minus velit. Voluptas in amet excepturi praesentium. Impedit quidem aperiam veniam libero.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 65
+                    user_id: 3
+                    title: 'magnam consequuntur autem'
+                    description: 'Accusamus eius voluptatem odio et ipsum. Eaque consequuntur sint ut voluptates est sint. Impedit sapiente sequi doloremque corporis possimus sit. Occaecati voluptas autem et est ratione.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 66
+                    user_id: 2
+                    title: 'rerum voluptatibus alias'
+                    description: 'Impedit dignissimos unde totam velit quo est eaque illum. Vel omnis laboriosam aut dolore id. Sint voluptas qui quis ut perferendis.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 67
+                    user_id: 9
+                    title: 'et et ut'
+                    description: 'Vitae ut ut alias dolor aut et. Alias et dolores cumque consectetur. Laboriosam molestiae sit perspiciatis mollitia quo.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 68
+                    user_id: 2
+                    title: 'quaerat non molestiae'
+                    description: 'Id enim ad voluptatem voluptatem tempore voluptas harum. Non et a rerum. Sequi nihil fuga tempore repellat commodi minima iure.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 69
+                    user_id: 7
+                    title: 'blanditiis blanditiis sed'
+                    description: 'Fuga nam qui quo est aut occaecati iste nulla. Doloribus culpa officia perspiciatis et sit. Et autem eaque nihil qui in alias.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 70
+                    user_id: 7
+                    title: 'quas consequuntur quod'
+                    description: 'Voluptas in necessitatibus ut expedita eos. Voluptatum architecto temporibus cumque id nihil minima. Minus ea repellendus consequatur quisquam error consequatur dignissimos. Quia alias rem dolores et molestias explicabo illo error.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 71
+                    user_id: 6
+                    title: 'ab rem omnis'
+                    description: 'Quia consequatur tenetur qui praesentium. Asperiores adipisci quibusdam unde. Illo neque quis voluptatem veniam et consequatur. Esse in esse corporis dolorum. Fugit est et beatae vel officiis molestias dolorum.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 72
+                    user_id: 5
+                    title: 'error ut quo'
+                    description: 'Ipsum quia iure ut explicabo aperiam placeat ipsum. Sed ipsum eligendi aut voluptas veniam exercitationem. Voluptatum facilis ut numquam nostrum incidunt. Quidem doloribus iure exercitationem aperiam qui facere.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 73
+                    user_id: 7
+                    title: 'reprehenderit porro non'
+                    description: 'Nostrum ratione ut aliquam eligendi. Aliquid sunt asperiores accusamus magni magni nihil quo. Excepturi sed eveniet dolores quidem sit maiores illo.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 74
+                    user_id: 2
+                    title: 'quis voluptas doloribus'
+                    description: 'Ducimus doloremque magnam tempora facere dolor et rerum nobis. Tempore temporibus voluptatibus a vitae quibusdam ab sequi. Totam ad enim aperiam officia reprehenderit. Sequi consequatur quia ullam.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 75
+                    user_id: 2
+                    title: 'esse consequatur enim'
+                    description: 'Sed suscipit sit iste qui repudiandae eum qui. Sit animi animi autem sunt fuga dolor nulla.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 76
+                    user_id: 4
+                    title: 'aut corrupti in'
+                    description: 'Incidunt porro libero molestiae. Placeat dolorem dolores eum atque officiis totam. Nihil consequatur unde adipisci et. Omnis veniam rerum architecto eius distinctio.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 77
+                    user_id: 10
+                    title: 'distinctio corporis sed'
+                    description: 'Qui qui aliquam aperiam et provident laudantium ut. Quasi aliquam deserunt id. Eos ducimus fugit et odio officia. Cumque aut architecto explicabo. Distinctio nobis quidem sit laudantium dolorem voluptatem fugit quae.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 78
+                    user_id: 1
+                    title: 'enim ab eum'
+                    description: 'Doloribus qui sint atque ut provident animi ipsum. Asperiores laboriosam harum consequuntur aliquam.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 79
+                    user_id: 9
+                    title: 'id id error'
+                    description: 'Temporibus ducimus id sed similique itaque. Commodi ea ut voluptatum aliquid distinctio eius molestiae. Non perferendis minus omnis voluptatem recusandae cupiditate. Est nesciunt voluptas sed aspernatur explicabo.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 80
+                    user_id: 6
+                    title: 'delectus eligendi ea'
+                    description: 'Voluptates corporis non itaque. Aperiam dolor optio ullam pariatur consequatur minima ipsam sed. Ratione sint dignissimos sint non voluptatem.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 81
+                    user_id: 10
+                    title: 'minima perferendis delectus'
+                    description: 'Ipsa necessitatibus iusto repellendus esse. Enim voluptas consequatur deserunt. Non iste corporis praesentium velit similique perspiciatis. Ea quia laudantium perspiciatis ea molestiae eveniet debitis non.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 82
+                    user_id: 9
+                    title: 'exercitationem qui quisquam'
+                    description: 'Delectus nihil qui magnam omnis et est. Architecto eaque sed molestiae maxime. Nam non porro voluptatum voluptatum. Vel ea unde non quisquam autem eaque laboriosam ea.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 83
+                    user_id: 1
+                    title: 'voluptas ad quos'
+                    description: 'Nemo eum quia rerum dolorum modi veritatis. Et autem id velit voluptatem laudantium commodi voluptas. Illo id quia qui accusamus.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 84
+                    user_id: 2
+                    title: 'omnis nemo ad'
+                    description: 'Enim odio voluptas hic aperiam. Et eius excepturi nam similique corporis voluptas consequuntur. Et voluptatem at iusto quis consequatur. Officiis odit consequatur excepturi quo non atque voluptatem.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 85
+                    user_id: 4
+                    title: 'totam illo impedit'
+                    description: 'Iste magni quod sunt sunt. Veritatis delectus culpa soluta omnis earum modi. Quis et vero placeat nam commodi. Sint mollitia perferendis quibusdam ut temporibus autem saepe.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 86
+                    user_id: 1
+                    title: 'quia ad omnis'
+                    description: 'Reiciendis aut magnam totam vitae et enim. Voluptates laboriosam corporis nisi deleniti quis. Omnis nisi veritatis distinctio qui dolores aut culpa.'
+                    status: H
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 87
+                    user_id: 8
+                    title: 'ut nihil esse'
+                    description: 'Reiciendis voluptatum quis dolorem voluptas deserunt ut. Aut et doloremque consectetur. Voluptas maiores nesciunt omnis numquam velit labore.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 88
+                    user_id: 1
+                    title: 'ut voluptatem dolores'
+                    description: 'Ex repellendus eos nisi repellendus qui ex. Quidem nobis et sapiente accusamus quas quisquam. Quia et officiis et cum magnam.'
+                    status: C
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 89
+                    user_id: 9
+                    title: 'beatae qui magni'
+                    description: 'Mollitia unde excepturi nam ratione aut in ut blanditiis. Non tenetur dolorem voluptas sed voluptates. Dolorum velit dolorem sit tempore.'
+                    status: A
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 90
+                    user_id: 2
+                    title: 'iste eum illo'
+                    description: 'Voluptatem neque magnam at odit natus sit. Dolor vel aperiam qui aperiam. Alias neque quam non animi. Voluptate quia itaque placeat.'
+                    status: X
+                    created_at: '2024-06-10T04:36:13.000000Z'
+                    updated_at: '2024-06-10T04:36:13.000000Z'
+                  -
+                    id: 91
+                    user_id: 2
+                    title: 'et qui voluptatem'
+                    description: 'Doloremque eum et deleniti. Id tempora porro et error rerum voluptas quaerat. Nulla tenetur quibusdam error voluptatem rerum explicabo. Illum harum eaque reiciendis earum et. Aut saepe quod eaque qui.'
+                    status: X
+                    created_at: '2024-06-10T04:36:14.000000Z'
+                    updated_at: '2024-06-10T04:36:14.000000Z'
+                  -
+                    id: 92
+                    user_id: 8
+                    title: 'quos magnam et'
+                    description: 'Qui nihil vel fuga quidem repudiandae rerum. Ullam voluptates vel quidem ab deleniti iusto. Nobis explicabo molestias fugit ut quam blanditiis.'
+                    status: H
+                    created_at: '2024-06-10T04:36:14.000000Z'
+                    updated_at: '2024-06-10T04:36:14.000000Z'
+                  -
+                    id: 93
+                    user_id: 2
+                    title: 'ut est sit'
+                    description: 'Facere quas voluptatem architecto odit. Labore laboriosam vel temporibus est. Qui velit quod blanditiis harum. Ratione dolores consequatur impedit molestiae aspernatur.'
+                    status: H
+                    created_at: '2024-06-10T04:36:14.000000Z'
+                    updated_at: '2024-06-10T04:36:14.000000Z'
+                  -
+                    id: 94
+                    user_id: 1
+                    title: 'maiores nisi velit'
+                    description: 'Nemo facilis quia natus iure saepe. Labore voluptatibus veritatis qui sed explicabo omnis. Ab est dolor possimus est sequi. Incidunt fuga et sint nostrum.'
+                    status: H
+                    created_at: '2024-06-10T04:36:14.000000Z'
+                    updated_at: '2024-06-10T04:36:14.000000Z'
+                  -
+                    id: 95
+                    user_id: 6
+                    title: 'et quia eligendi'
+                    description: 'Aut ipsa culpa consequatur rerum dicta dignissimos non. Ad placeat atque sequi dolore. Eius nobis rerum ut explicabo fugiat quia autem.'
+                    status: A
+                    created_at: '2024-06-10T04:36:14.000000Z'
+                    updated_at: '2024-06-10T04:36:14.000000Z'
+                  -
+                    id: 96
+                    user_id: 6
+                    title: 'et quas qui'
+                    description: 'Id nemo hic eaque occaecati. Illo enim nostrum quia vel enim dolores eos. Aspernatur quasi animi harum. Ab aut quia ut aut hic rerum perspiciatis optio.'
+                    status: X
+                    created_at: '2024-06-10T04:36:14.000000Z'
+                    updated_at: '2024-06-10T04:36:14.000000Z'
+                  -
+                    id: 97
+                    user_id: 8
+                    title: 'consequatur minus earum'
+                    description: 'Ut aliquam quidem aliquid provident aut et aut. Molestiae dolorem dolores facilis magni delectus sed. Voluptates accusamus occaecati quia vel. Occaecati omnis ipsum distinctio eum et qui.'
+                    status: A
+                    created_at: '2024-06-10T04:36:14.000000Z'
+                    updated_at: '2024-06-10T04:36:14.000000Z'
+                  -
+                    id: 98
+                    user_id: 4
+                    title: 'quis sit molestiae'
+                    description: 'Et numquam voluptatem eius cumque voluptas corporis et. Vel ipsa architecto voluptas assumenda. Qui illum fuga placeat illo corrupti animi.'
+                    status: A
+                    created_at: '2024-06-10T04:36:14.000000Z'
+                    updated_at: '2024-06-10T04:36:14.000000Z'
+                  -
+                    id: 99
+                    user_id: 2
+                    title: 'ut aut cumque'
+                    description: 'Optio consequuntur pariatur eligendi eos excepturi est. Sapiente rerum omnis quia tempore magni a aut.'
+                    status: A
+                    created_at: '2024-06-10T04:36:14.000000Z'
+                    updated_at: '2024-06-10T04:36:14.000000Z'
+                  -
+                    id: 100
+                    user_id: 5
+                    title: 'soluta quisquam vero'
+                    description: 'Qui facere beatae ut et sed itaque. Aperiam exercitationem et est illum. Velit nesciunt qui harum natus aperiam aspernatur velit.'
+                    status: H
+                    created_at: '2024-06-10T04:36:14.000000Z'
+                    updated_at: '2024-06-10T04:36:14.000000Z'
+                  -
+                    id: 101
+                    user_id: 2
+                    title: 'Replace this title'
+                    description: 'Replace this description'
+                    status: A
+                    created_at: '2024-06-11T02:55:00.000000Z'
+                    updated_at: '2024-06-11T02:55:00.000000Z'
+                  -
+                    id: 103
+                    user_id: 1
+                    title: 'Replace this title 2'
+                    description: 'Replace this description 2'
+                    status: A
+                    created_at: '2024-06-11T08:48:38.000000Z'
+                    updated_at: '2024-06-11T08:48:38.000000Z'
+                  -
+                    id: 105
+                    user_id: 1
+                    title: 'Replace this title 3'
+                    description: 'Replace this description 3'
+                    status: A
+                    created_at: '2024-06-12T03:35:19.000000Z'
+                    updated_at: '2024-06-12T03:35:19.000000Z'
+      tags:
+        - Endpoints
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: 'Ms. Haylie Labadie DDS'
+                  email: yessenia.orn@example.com
+                  email_verified_at: '2024-06-10T04:36:11.000000Z'
+                  is_manager: false
+                  created_at: '2024-06-10T04:36:11.000000Z'
+                  updated_at: '2024-06-10T04:36:11.000000Z'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: 'Ms. Haylie Labadie DDS'
+                  email:
+                    type: string
+                    example: yessenia.orn@example.com
+                  email_verified_at:
+                    type: string
+                    example: '2024-06-10T04:36:11.000000Z'
+                  is_manager:
+                    type: boolean
+                    example: false
+                  created_at:
+                    type: string
+                    example: '2024-06-10T04:36:11.000000Z'
+                  updated_at:
+                    type: string
+                    example: '2024-06-10T04:36:11.000000Z'
+      tags:
+        - Endpoints
+  '/api/v1/tickets/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    type: ticket
+                    id: 1
+                    attributes:
+                      title: 'illo quia optio'
+                      description: 'Ratione asperiores quasi sapiente molestiae quidem id ullam ex. Consequatur repellendus qui est est deleniti quidem. Sit ut et ut autem. Id iusto ullam sapiente hic deleniti aspernatur dolorem.'
+                      status: C
+                      createdAt: '2024-06-10T04:36:12.000000Z'
+                      updatedAt: '2024-06-10T05:53:04.000000Z'
+                    relationships:
+                      author:
+                        type: user
+                        id: 3
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/3'
+                    links:
+                      self: 'http://localhost:8000/api/v1/tickets/1'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: ticket
+                      id:
+                        type: integer
+                        example: 1
+                      attributes:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            example: 'illo quia optio'
+                          description:
+                            type: string
+                            example: 'Ratione asperiores quasi sapiente molestiae quidem id ullam ex. Consequatur repellendus qui est est deleniti quidem. Sit ut et ut autem. Id iusto ullam sapiente hic deleniti aspernatur dolorem.'
+                          status:
+                            type: string
+                            example: C
+                          createdAt:
+                            type: string
+                            example: '2024-06-10T04:36:12.000000Z'
+                          updatedAt:
+                            type: string
+                            example: '2024-06-10T05:53:04.000000Z'
+                      relationships:
+                        type: object
+                        properties:
+                          author:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                example: user
+                              id:
+                                type: integer
+                                example: 3
+                          links:
+                            type: object
+                            properties:
+                              self:
+                                type: string
+                                example: 'http://localhost:8000/api/v1/authors/3'
+                      links:
+                        type: object
+                        properties:
+                          self:
+                            type: string
+                            example: 'http://localhost:8000/api/v1/tickets/1'
+      tags:
+        - Endpoints
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the ticket.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/tickets/{ticket}':
+    put:
+      summary: ''
+      operationId: putApiV1TicketsTicket
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    attributes:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        title:
+                          type: string
+                          description: ''
+                          example: est
+                        description:
+                          type: string
+                          description: ''
+                          example: 'Amet at qui deleniti quae est omnis vel.'
+                        status:
+                          type: string
+                          description: ''
+                          example: C
+                          enum:
+                            - A
+                            - C
+                            - H
+                            - X
+                    relationships:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        author:
+                          type: object
+                          description: ''
+                          example: []
+                          properties:
+                            data:
+                              type: object
+                              description: ''
+                              example: []
+                              properties:
+                                id:
+                                  type: integer
+                                  description: ''
+                                  example: 12
+    patch:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    attributes:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        title:
+                          type: string
+                          description: ''
+                          example: ex
+                        description:
+                          type: string
+                          description: ''
+                          example: 'Sint aut et labore laboriosam quos vel.'
+                        status:
+                          type: string
+                          description: ''
+                          example: C
+                          enum:
+                            - A
+                            - C
+                            - H
+                            - X
+                    relationships:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        author:
+                          type: object
+                          description: ''
+                          example: []
+                          properties:
+                            data:
+                              type: object
+                              description: ''
+                              example: []
+                              properties:
+                                id:
+                                  type: string
+                                  description: ''
+                                  example: null
+    parameters:
+      -
+        in: path
+        name: ticket
+        description: 'The ticket.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/users:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      type: user
+                      id: 1
+                      attributes:
+                        name: 'Ms. Haylie Labadie DDS'
+                        email: yessenia.orn@example.com
+                        isManager: false
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/1'
+                    -
+                      type: user
+                      id: 2
+                      attributes:
+                        name: 'Delia Hessel'
+                        email: oswaldo.wisozk@example.com
+                        isManager: false
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/2'
+                    -
+                      type: user
+                      id: 3
+                      attributes:
+                        name: 'Ms. Kailee Koch'
+                        email: barton.sanford@example.com
+                        isManager: false
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/3'
+                    -
+                      type: user
+                      id: 4
+                      attributes:
+                        name: 'Mario Larson'
+                        email: ychristiansen@example.com
+                        isManager: false
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/4'
+                    -
+                      type: user
+                      id: 5
+                      attributes:
+                        name: 'Araceli Hermann'
+                        email: americo76@example.net
+                        isManager: false
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/5'
+                    -
+                      type: user
+                      id: 6
+                      attributes:
+                        name: 'Erna Boyle'
+                        email: wade.little@example.net
+                        isManager: false
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/6'
+                    -
+                      type: user
+                      id: 7
+                      attributes:
+                        name: 'Duane Corkery'
+                        email: yokuneva@example.com
+                        isManager: false
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/7'
+                    -
+                      type: user
+                      id: 8
+                      attributes:
+                        name: 'Maximillia Veum'
+                        email: christine08@example.com
+                        isManager: false
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/8'
+                    -
+                      type: user
+                      id: 9
+                      attributes:
+                        name: 'Cordelia Orn'
+                        email: iheller@example.com
+                        isManager: false
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/9'
+                    -
+                      type: user
+                      id: 10
+                      attributes:
+                        name: 'Halie Bailey'
+                        email: jacinthe.medhurst@example.org
+                        isManager: false
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/10'
+                    -
+                      type: user
+                      id: 11
+                      attributes:
+                        name: 'The Manager'
+                        email: manager@manager.com
+                        isManager: true
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/11'
+                  links:
+                    first: 'http://localhost:8000/api/v1/users?page=1'
+                    last: 'http://localhost:8000/api/v1/users?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/users?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://localhost:8000/api/v1/users'
+                    per_page: 15
+                    to: 11
+                    total: 11
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        type: user
+                        id: 1
+                        attributes:
+                          name: 'Ms. Haylie Labadie DDS'
+                          email: yessenia.orn@example.com
+                          isManager: false
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/1'
+                      -
+                        type: user
+                        id: 2
+                        attributes:
+                          name: 'Delia Hessel'
+                          email: oswaldo.wisozk@example.com
+                          isManager: false
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/2'
+                      -
+                        type: user
+                        id: 3
+                        attributes:
+                          name: 'Ms. Kailee Koch'
+                          email: barton.sanford@example.com
+                          isManager: false
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/3'
+                      -
+                        type: user
+                        id: 4
+                        attributes:
+                          name: 'Mario Larson'
+                          email: ychristiansen@example.com
+                          isManager: false
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/4'
+                      -
+                        type: user
+                        id: 5
+                        attributes:
+                          name: 'Araceli Hermann'
+                          email: americo76@example.net
+                          isManager: false
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/5'
+                      -
+                        type: user
+                        id: 6
+                        attributes:
+                          name: 'Erna Boyle'
+                          email: wade.little@example.net
+                          isManager: false
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/6'
+                      -
+                        type: user
+                        id: 7
+                        attributes:
+                          name: 'Duane Corkery'
+                          email: yokuneva@example.com
+                          isManager: false
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/7'
+                      -
+                        type: user
+                        id: 8
+                        attributes:
+                          name: 'Maximillia Veum'
+                          email: christine08@example.com
+                          isManager: false
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/8'
+                      -
+                        type: user
+                        id: 9
+                        attributes:
+                          name: 'Cordelia Orn'
+                          email: iheller@example.com
+                          isManager: false
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/9'
+                      -
+                        type: user
+                        id: 10
+                        attributes:
+                          name: 'Halie Bailey'
+                          email: jacinthe.medhurst@example.org
+                          isManager: false
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/10'
+                      -
+                        type: user
+                        id: 11
+                        attributes:
+                          name: 'The Manager'
+                          email: manager@manager.com
+                          isManager: true
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/11'
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          example: user
+                        id:
+                          type: integer
+                          example: 1
+                        attributes:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: 'Ms. Haylie Labadie DDS'
+                            email:
+                              type: string
+                              example: yessenia.orn@example.com
+                            isManager:
+                              type: boolean
+                              example: false
+                        links:
+                          type: object
+                          properties:
+                            self:
+                              type: string
+                              example: 'http://localhost:8000/api/v1/authors/1'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/users?page=1'
+                      last:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/users?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/users?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/users'
+                      per_page:
+                        type: integer
+                        example: 15
+                      to:
+                        type: integer
+                        example: 11
+                      total:
+                        type: integer
+                        example: 11
+      tags:
+        - Endpoints
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    attributes:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        email:
+                          type: string
+                          description: 'Must be a valid email address.'
+                          example: dschulist@example.com
+                        name:
+                          type: string
+                          description: ''
+                          example: quidem
+                        isManager:
+                          type: boolean
+                          description: ''
+                          example: true
+                        password:
+                          type: string
+                          description: ''
+                          example: 'SrY~}hfyQPBj'
+  '/api/v1/users/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    type: user
+                    id: 1
+                    attributes:
+                      name: 'Ms. Haylie Labadie DDS'
+                      email: yessenia.orn@example.com
+                      isManager: false
+                    links:
+                      self: 'http://localhost:8000/api/v1/authors/1'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: user
+                      id:
+                        type: integer
+                        example: 1
+                      attributes:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: 'Ms. Haylie Labadie DDS'
+                          email:
+                            type: string
+                            example: yessenia.orn@example.com
+                          isManager:
+                            type: boolean
+                            example: false
+                      links:
+                        type: object
+                        properties:
+                          self:
+                            type: string
+                            example: 'http://localhost:8000/api/v1/authors/1'
+      tags:
+        - Endpoints
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/users/{user}':
+    put:
+      summary: ''
+      operationId: putApiV1UsersUser
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    attributes:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        email:
+                          type: string
+                          description: 'Must be a valid email address.'
+                          example: mstreich@example.com
+                        name:
+                          type: string
+                          description: ''
+                          example: quo
+                        isManager:
+                          type: boolean
+                          description: ''
+                          example: false
+                        password:
+                          type: string
+                          description: ''
+                          example: cr//mC5l
+    patch:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    attributes:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        email:
+                          type: string
+                          description: 'Must be a valid email address.'
+                          example: hirthe.adella@example.net
+                        name:
+                          type: string
+                          description: ''
+                          example: repudiandae
+                        isManager:
+                          type: boolean
+                          description: ''
+                          example: false
+                        password:
+                          type: string
+                          description: ''
+                          example: ;6ZW_f
+    parameters:
+      -
+        in: path
+        name: user
+        description: 'The user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/authors:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      type: user
+                      id: 1
+                      attributes:
+                        name: 'Ms. Haylie Labadie DDS'
+                        email: yessenia.orn@example.com
+                        isManager: false
+                        emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                        updatedAt: '2024-06-10T04:36:11.000000Z'
+                        createdAt: '2024-06-10T04:36:11.000000Z'
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/1'
+                    -
+                      type: user
+                      id: 2
+                      attributes:
+                        name: 'Delia Hessel'
+                        email: oswaldo.wisozk@example.com
+                        isManager: false
+                        emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                        updatedAt: '2024-06-10T04:36:11.000000Z'
+                        createdAt: '2024-06-10T04:36:11.000000Z'
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/2'
+                    -
+                      type: user
+                      id: 3
+                      attributes:
+                        name: 'Ms. Kailee Koch'
+                        email: barton.sanford@example.com
+                        isManager: false
+                        emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                        updatedAt: '2024-06-10T04:36:11.000000Z'
+                        createdAt: '2024-06-10T04:36:11.000000Z'
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/3'
+                    -
+                      type: user
+                      id: 4
+                      attributes:
+                        name: 'Mario Larson'
+                        email: ychristiansen@example.com
+                        isManager: false
+                        emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                        updatedAt: '2024-06-10T04:36:11.000000Z'
+                        createdAt: '2024-06-10T04:36:11.000000Z'
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/4'
+                    -
+                      type: user
+                      id: 5
+                      attributes:
+                        name: 'Araceli Hermann'
+                        email: americo76@example.net
+                        isManager: false
+                        emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                        updatedAt: '2024-06-10T04:36:11.000000Z'
+                        createdAt: '2024-06-10T04:36:11.000000Z'
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/5'
+                    -
+                      type: user
+                      id: 6
+                      attributes:
+                        name: 'Erna Boyle'
+                        email: wade.little@example.net
+                        isManager: false
+                        emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                        updatedAt: '2024-06-10T04:36:11.000000Z'
+                        createdAt: '2024-06-10T04:36:11.000000Z'
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/6'
+                    -
+                      type: user
+                      id: 7
+                      attributes:
+                        name: 'Duane Corkery'
+                        email: yokuneva@example.com
+                        isManager: false
+                        emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                        updatedAt: '2024-06-10T04:36:11.000000Z'
+                        createdAt: '2024-06-10T04:36:11.000000Z'
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/7'
+                    -
+                      type: user
+                      id: 8
+                      attributes:
+                        name: 'Maximillia Veum'
+                        email: christine08@example.com
+                        isManager: false
+                        emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                        updatedAt: '2024-06-10T04:36:11.000000Z'
+                        createdAt: '2024-06-10T04:36:11.000000Z'
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/8'
+                    -
+                      type: user
+                      id: 9
+                      attributes:
+                        name: 'Cordelia Orn'
+                        email: iheller@example.com
+                        isManager: false
+                        emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                        updatedAt: '2024-06-10T04:36:11.000000Z'
+                        createdAt: '2024-06-10T04:36:11.000000Z'
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/9'
+                    -
+                      type: user
+                      id: 10
+                      attributes:
+                        name: 'Halie Bailey'
+                        email: jacinthe.medhurst@example.org
+                        isManager: false
+                        emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                        updatedAt: '2024-06-10T04:36:11.000000Z'
+                        createdAt: '2024-06-10T04:36:11.000000Z'
+                      links:
+                        self: 'http://localhost:8000/api/v1/authors/10'
+                  links:
+                    first: 'http://localhost:8000/api/v1/authors?page=1'
+                    last: 'http://localhost:8000/api/v1/authors?page=7'
+                    prev: null
+                    next: 'http://localhost:8000/api/v1/authors?page=2'
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 7
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/authors?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: 'http://localhost:8000/api/v1/authors?page=2'
+                        label: '2'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/authors?page=3'
+                        label: '3'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/authors?page=4'
+                        label: '4'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/authors?page=5'
+                        label: '5'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/authors?page=6'
+                        label: '6'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/authors?page=7'
+                        label: '7'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/authors?page=2'
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://localhost:8000/api/v1/authors'
+                    per_page: 15
+                    to: 10
+                    total: 103
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        type: user
+                        id: 1
+                        attributes:
+                          name: 'Ms. Haylie Labadie DDS'
+                          email: yessenia.orn@example.com
+                          isManager: false
+                          emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                          updatedAt: '2024-06-10T04:36:11.000000Z'
+                          createdAt: '2024-06-10T04:36:11.000000Z'
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/1'
+                      -
+                        type: user
+                        id: 2
+                        attributes:
+                          name: 'Delia Hessel'
+                          email: oswaldo.wisozk@example.com
+                          isManager: false
+                          emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                          updatedAt: '2024-06-10T04:36:11.000000Z'
+                          createdAt: '2024-06-10T04:36:11.000000Z'
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/2'
+                      -
+                        type: user
+                        id: 3
+                        attributes:
+                          name: 'Ms. Kailee Koch'
+                          email: barton.sanford@example.com
+                          isManager: false
+                          emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                          updatedAt: '2024-06-10T04:36:11.000000Z'
+                          createdAt: '2024-06-10T04:36:11.000000Z'
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/3'
+                      -
+                        type: user
+                        id: 4
+                        attributes:
+                          name: 'Mario Larson'
+                          email: ychristiansen@example.com
+                          isManager: false
+                          emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                          updatedAt: '2024-06-10T04:36:11.000000Z'
+                          createdAt: '2024-06-10T04:36:11.000000Z'
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/4'
+                      -
+                        type: user
+                        id: 5
+                        attributes:
+                          name: 'Araceli Hermann'
+                          email: americo76@example.net
+                          isManager: false
+                          emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                          updatedAt: '2024-06-10T04:36:11.000000Z'
+                          createdAt: '2024-06-10T04:36:11.000000Z'
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/5'
+                      -
+                        type: user
+                        id: 6
+                        attributes:
+                          name: 'Erna Boyle'
+                          email: wade.little@example.net
+                          isManager: false
+                          emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                          updatedAt: '2024-06-10T04:36:11.000000Z'
+                          createdAt: '2024-06-10T04:36:11.000000Z'
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/6'
+                      -
+                        type: user
+                        id: 7
+                        attributes:
+                          name: 'Duane Corkery'
+                          email: yokuneva@example.com
+                          isManager: false
+                          emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                          updatedAt: '2024-06-10T04:36:11.000000Z'
+                          createdAt: '2024-06-10T04:36:11.000000Z'
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/7'
+                      -
+                        type: user
+                        id: 8
+                        attributes:
+                          name: 'Maximillia Veum'
+                          email: christine08@example.com
+                          isManager: false
+                          emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                          updatedAt: '2024-06-10T04:36:11.000000Z'
+                          createdAt: '2024-06-10T04:36:11.000000Z'
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/8'
+                      -
+                        type: user
+                        id: 9
+                        attributes:
+                          name: 'Cordelia Orn'
+                          email: iheller@example.com
+                          isManager: false
+                          emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                          updatedAt: '2024-06-10T04:36:11.000000Z'
+                          createdAt: '2024-06-10T04:36:11.000000Z'
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/9'
+                      -
+                        type: user
+                        id: 10
+                        attributes:
+                          name: 'Halie Bailey'
+                          email: jacinthe.medhurst@example.org
+                          isManager: false
+                          emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                          updatedAt: '2024-06-10T04:36:11.000000Z'
+                          createdAt: '2024-06-10T04:36:11.000000Z'
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/10'
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          example: user
+                        id:
+                          type: integer
+                          example: 1
+                        attributes:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: 'Ms. Haylie Labadie DDS'
+                            email:
+                              type: string
+                              example: yessenia.orn@example.com
+                            isManager:
+                              type: boolean
+                              example: false
+                            emailVerifiedAt:
+                              type: string
+                              example: '2024-06-10T04:36:11.000000Z'
+                            updatedAt:
+                              type: string
+                              example: '2024-06-10T04:36:11.000000Z'
+                            createdAt:
+                              type: string
+                              example: '2024-06-10T04:36:11.000000Z'
+                        links:
+                          type: object
+                          properties:
+                            self:
+                              type: string
+                              example: 'http://localhost:8000/api/v1/authors/1'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/authors?page=1'
+                      last:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/authors?page=7'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/authors?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 7
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/authors?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: 'http://localhost:8000/api/v1/authors?page=2'
+                            label: '2'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/authors?page=3'
+                            label: '3'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/authors?page=4'
+                            label: '4'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/authors?page=5'
+                            label: '5'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/authors?page=6'
+                            label: '6'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/authors?page=7'
+                            label: '7'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/authors?page=2'
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/authors'
+                      per_page:
+                        type: integer
+                        example: 15
+                      to:
+                        type: integer
+                        example: 10
+                      total:
+                        type: integer
+                        example: 103
+      tags:
+        - Endpoints
+  '/api/v1/authors/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    type: user
+                    id: 1
+                    attributes:
+                      name: 'Ms. Haylie Labadie DDS'
+                      email: yessenia.orn@example.com
+                      isManager: false
+                      emailVerifiedAt: '2024-06-10T04:36:11.000000Z'
+                      updatedAt: '2024-06-10T04:36:11.000000Z'
+                      createdAt: '2024-06-10T04:36:11.000000Z'
+                    links:
+                      self: 'http://localhost:8000/api/v1/authors/1'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: user
+                      id:
+                        type: integer
+                        example: 1
+                      attributes:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: 'Ms. Haylie Labadie DDS'
+                          email:
+                            type: string
+                            example: yessenia.orn@example.com
+                          isManager:
+                            type: boolean
+                            example: false
+                          emailVerifiedAt:
+                            type: string
+                            example: '2024-06-10T04:36:11.000000Z'
+                          updatedAt:
+                            type: string
+                            example: '2024-06-10T04:36:11.000000Z'
+                          createdAt:
+                            type: string
+                            example: '2024-06-10T04:36:11.000000Z'
+                      links:
+                        type: object
+                        properties:
+                          self:
+                            type: string
+                            example: 'http://localhost:8000/api/v1/authors/1'
+      tags:
+        - Endpoints
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the author.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/authors/{author_id}/tickets':
+    get:
+      summary: ''
+      operationId: getApiV1AuthorsAuthor_idTickets
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  links:
+                    first: 'http://localhost:8000/api/v1/authors/qui/tickets?page=1'
+                    last: 'http://localhost:8000/api/v1/authors/qui/tickets?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: null
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/authors/qui/tickets?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://localhost:8000/api/v1/authors/qui/tickets'
+                    per_page: 15
+                    to: null
+                    total: 0
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/authors/qui/tickets?page=1'
+                      last:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/authors/qui/tickets?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: string
+                        example: null
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/authors/qui/tickets?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/authors/qui/tickets'
+                      per_page:
+                        type: integer
+                        example: 15
+                      to:
+                        type: string
+                        example: null
+                      total:
+                        type: integer
+                        example: 0
+      tags:
+        - Endpoints
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    attributes:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        title:
+                          type: string
+                          description: "The ticket's title (method)."
+                          example: No-example
+                        description:
+                          type: string
+                          description: "The ticket's description."
+                          example: No-example
+                        status:
+                          type: string
+                          description: "The ticket's status."
+                          example: No-example
+                          enum:
+                            - A
+                            - C
+                            - H
+                            - X
+                author:
+                  type: integer
+                  description: 'The author assigned to the ticket. Must be 1.'
+                  example: 0
+              required:
+                - data
+                - author
+    parameters:
+      -
+        in: path
+        name: author_id
+        description: 'The ID of the author.'
+        example: qui
+        required: true
+        schema:
+          type: string
+  '/api/v1/authors/{author_id}/tickets/{id}':
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: author_id
+        description: 'The ID of the author.'
+        example: autem
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: 'The ID of the ticket.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/authors/{author}/tickets/{ticket}':
+    put:
+      summary: ''
+      operationId: putApiV1AuthorsAuthorTicketsTicket
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    attributes:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        title:
+                          type: string
+                          description: ''
+                          example: omnis
+                        description:
+                          type: string
+                          description: ''
+                          example: 'Repellat aut autem error quia cupiditate quo rerum.'
+                        status:
+                          type: string
+                          description: ''
+                          example: H
+                          enum:
+                            - A
+                            - C
+                            - H
+                            - X
+                    relationships:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        author:
+                          type: object
+                          description: ''
+                          example: []
+                          properties:
+                            data:
+                              type: object
+                              description: ''
+                              example: []
+                              properties:
+                                id:
+                                  type: integer
+                                  description: ''
+                                  example: 12
+    patch:
+      summary: ''
+      operationId: patchApiV1AuthorsAuthorTicketsTicket
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    attributes:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        title:
+                          type: string
+                          description: ''
+                          example: esse
+                        description:
+                          type: string
+                          description: ''
+                          example: 'Velit aperiam quod consequatur ad tempore corporis.'
+                        status:
+                          type: string
+                          description: ''
+                          example: A
+                          enum:
+                            - A
+                            - C
+                            - H
+                            - X
+                    relationships:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        author:
+                          type: object
+                          description: ''
+                          example: []
+                          properties:
+                            data:
+                              type: object
+                              description: ''
+                              example: []
+                              properties:
+                                id:
+                                  type: string
+                                  description: ''
+                                  example: null
+    parameters:
+      -
+        in: path
+        name: author
+        description: 'The author.'
+        example: veniam
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: ticket
+        description: 'The ticket.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/user:
+    get:
+      summary: ''
+      operationId: getApiV1User
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: 'Ms. Haylie Labadie DDS'
+                  email: yessenia.orn@example.com
+                  email_verified_at: '2024-06-10T04:36:11.000000Z'
+                  is_manager: false
+                  created_at: '2024-06-10T04:36:11.000000Z'
+                  updated_at: '2024-06-10T04:36:11.000000Z'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: 'Ms. Haylie Labadie DDS'
+                  email:
+                    type: string
+                    example: yessenia.orn@example.com
+                  email_verified_at:
+                    type: string
+                    example: '2024-06-10T04:36:11.000000Z'
+                  is_manager:
+                    type: boolean
+                    example: false
+                  created_at:
+                    type: string
+                    example: '2024-06-10T04:36:11.000000Z'
+                  updated_at:
+                    type: string
+                    example: '2024-06-10T04:36:11.000000Z'
+      tags:
+        - Endpoints
+  /api/v1/tickets:
+    get:
+      summary: 'GET all tickets'
+      operationId: gETAllTickets
+      description: ''
+      parameters:
+        -
+          in: query
+          name: sort
+          description: 'Data field(s) to sort by. Separate multiple fields with commas. Denote descending sort with a munus sign.'
+          example: 'sort=title,-createdAt'
+          required: false
+          schema:
+            type: string
+            description: 'Data field(s) to sort by. Separate multiple fields with commas. Denote descending sort with a munus sign.'
+            example: 'sort=title,-createdAt'
+        -
+          in: query
+          name: 'filter[status]'
+          description: 'Filter by status code: A, C, H, X.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by status code: A, C, H, X.'
+            example: null
+        -
+          in: query
+          name: 'filter[title]'
+          description: 'Filter by title. Wildcards are supported.'
+          example: '*fix*'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by title. Wildcards are supported.'
+            example: '*fix*'
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      type: ticket
+                      id: 105
+                      attributes:
+                        title: 'Replace this title 3'
+                        status: A
+                        createdAt: '2024-06-12T03:35:19.000000Z'
+                        updatedAt: '2024-06-12T03:35:19.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 1
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/1'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/105'
+                    -
+                      type: ticket
+                      id: 103
+                      attributes:
+                        title: 'Replace this title 2'
+                        status: A
+                        createdAt: '2024-06-11T08:48:38.000000Z'
+                        updatedAt: '2024-06-11T08:48:38.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 1
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/1'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/103'
+                    -
+                      type: ticket
+                      id: 101
+                      attributes:
+                        title: 'Replace this title'
+                        status: A
+                        createdAt: '2024-06-11T02:55:00.000000Z'
+                        updatedAt: '2024-06-11T02:55:00.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 2
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/2'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/101'
+                    -
+                      type: ticket
+                      id: 94
+                      attributes:
+                        title: 'maiores nisi velit'
+                        status: H
+                        createdAt: '2024-06-10T04:36:14.000000Z'
+                        updatedAt: '2024-06-10T04:36:14.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 1
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/1'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/94'
+                    -
+                      type: ticket
+                      id: 93
+                      attributes:
+                        title: 'ut est sit'
+                        status: H
+                        createdAt: '2024-06-10T04:36:14.000000Z'
+                        updatedAt: '2024-06-10T04:36:14.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 2
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/2'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/93'
+                    -
+                      type: ticket
+                      id: 92
+                      attributes:
+                        title: 'quos magnam et'
+                        status: H
+                        createdAt: '2024-06-10T04:36:14.000000Z'
+                        updatedAt: '2024-06-10T04:36:14.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 8
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/8'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/92'
+                    -
+                      type: ticket
+                      id: 100
+                      attributes:
+                        title: 'soluta quisquam vero'
+                        status: H
+                        createdAt: '2024-06-10T04:36:14.000000Z'
+                        updatedAt: '2024-06-10T04:36:14.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 5
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/5'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/100'
+                    -
+                      type: ticket
+                      id: 99
+                      attributes:
+                        title: 'ut aut cumque'
+                        status: A
+                        createdAt: '2024-06-10T04:36:14.000000Z'
+                        updatedAt: '2024-06-10T04:36:14.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 2
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/2'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/99'
+                    -
+                      type: ticket
+                      id: 98
+                      attributes:
+                        title: 'quis sit molestiae'
+                        status: A
+                        createdAt: '2024-06-10T04:36:14.000000Z'
+                        updatedAt: '2024-06-10T04:36:14.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 4
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/4'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/98'
+                    -
+                      type: ticket
+                      id: 97
+                      attributes:
+                        title: 'consequatur minus earum'
+                        status: A
+                        createdAt: '2024-06-10T04:36:14.000000Z'
+                        updatedAt: '2024-06-10T04:36:14.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 8
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/8'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/97'
+                    -
+                      type: ticket
+                      id: 96
+                      attributes:
+                        title: 'et quas qui'
+                        status: X
+                        createdAt: '2024-06-10T04:36:14.000000Z'
+                        updatedAt: '2024-06-10T04:36:14.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 6
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/6'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/96'
+                    -
+                      type: ticket
+                      id: 95
+                      attributes:
+                        title: 'et quia eligendi'
+                        status: A
+                        createdAt: '2024-06-10T04:36:14.000000Z'
+                        updatedAt: '2024-06-10T04:36:14.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 6
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/6'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/95'
+                    -
+                      type: ticket
+                      id: 91
+                      attributes:
+                        title: 'et qui voluptatem'
+                        status: X
+                        createdAt: '2024-06-10T04:36:14.000000Z'
+                        updatedAt: '2024-06-10T04:36:14.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 2
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/2'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/91'
+                    -
+                      type: ticket
+                      id: 75
+                      attributes:
+                        title: 'esse consequatur enim'
+                        status: X
+                        createdAt: '2024-06-10T04:36:13.000000Z'
+                        updatedAt: '2024-06-10T04:36:13.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 2
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/2'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/75'
+                    -
+                      type: ticket
+                      id: 76
+                      attributes:
+                        title: 'aut corrupti in'
+                        status: C
+                        createdAt: '2024-06-10T04:36:13.000000Z'
+                        updatedAt: '2024-06-10T04:36:13.000000Z'
+                      relationships:
+                        author:
+                          type: user
+                          id: 4
+                        links:
+                          self: 'http://localhost:8000/api/v1/authors/4'
+                      links:
+                        self: 'http://localhost:8000/api/v1/tickets/76'
+                  links:
+                    first: 'http://localhost:8000/api/v1/tickets?page=1'
+                    last: 'http://localhost:8000/api/v1/tickets?page=7'
+                    prev: null
+                    next: 'http://localhost:8000/api/v1/tickets?page=2'
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 7
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/tickets?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: 'http://localhost:8000/api/v1/tickets?page=2'
+                        label: '2'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/tickets?page=3'
+                        label: '3'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/tickets?page=4'
+                        label: '4'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/tickets?page=5'
+                        label: '5'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/tickets?page=6'
+                        label: '6'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/tickets?page=7'
+                        label: '7'
+                        active: false
+                      -
+                        url: 'http://localhost:8000/api/v1/tickets?page=2'
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://localhost:8000/api/v1/tickets'
+                    per_page: 15
+                    to: 15
+                    total: 103
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        type: ticket
+                        id: 105
+                        attributes:
+                          title: 'Replace this title 3'
+                          status: A
+                          createdAt: '2024-06-12T03:35:19.000000Z'
+                          updatedAt: '2024-06-12T03:35:19.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 1
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/1'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/105'
+                      -
+                        type: ticket
+                        id: 103
+                        attributes:
+                          title: 'Replace this title 2'
+                          status: A
+                          createdAt: '2024-06-11T08:48:38.000000Z'
+                          updatedAt: '2024-06-11T08:48:38.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 1
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/1'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/103'
+                      -
+                        type: ticket
+                        id: 101
+                        attributes:
+                          title: 'Replace this title'
+                          status: A
+                          createdAt: '2024-06-11T02:55:00.000000Z'
+                          updatedAt: '2024-06-11T02:55:00.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 2
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/2'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/101'
+                      -
+                        type: ticket
+                        id: 94
+                        attributes:
+                          title: 'maiores nisi velit'
+                          status: H
+                          createdAt: '2024-06-10T04:36:14.000000Z'
+                          updatedAt: '2024-06-10T04:36:14.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 1
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/1'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/94'
+                      -
+                        type: ticket
+                        id: 93
+                        attributes:
+                          title: 'ut est sit'
+                          status: H
+                          createdAt: '2024-06-10T04:36:14.000000Z'
+                          updatedAt: '2024-06-10T04:36:14.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 2
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/2'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/93'
+                      -
+                        type: ticket
+                        id: 92
+                        attributes:
+                          title: 'quos magnam et'
+                          status: H
+                          createdAt: '2024-06-10T04:36:14.000000Z'
+                          updatedAt: '2024-06-10T04:36:14.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 8
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/8'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/92'
+                      -
+                        type: ticket
+                        id: 100
+                        attributes:
+                          title: 'soluta quisquam vero'
+                          status: H
+                          createdAt: '2024-06-10T04:36:14.000000Z'
+                          updatedAt: '2024-06-10T04:36:14.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 5
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/5'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/100'
+                      -
+                        type: ticket
+                        id: 99
+                        attributes:
+                          title: 'ut aut cumque'
+                          status: A
+                          createdAt: '2024-06-10T04:36:14.000000Z'
+                          updatedAt: '2024-06-10T04:36:14.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 2
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/2'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/99'
+                      -
+                        type: ticket
+                        id: 98
+                        attributes:
+                          title: 'quis sit molestiae'
+                          status: A
+                          createdAt: '2024-06-10T04:36:14.000000Z'
+                          updatedAt: '2024-06-10T04:36:14.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 4
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/4'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/98'
+                      -
+                        type: ticket
+                        id: 97
+                        attributes:
+                          title: 'consequatur minus earum'
+                          status: A
+                          createdAt: '2024-06-10T04:36:14.000000Z'
+                          updatedAt: '2024-06-10T04:36:14.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 8
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/8'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/97'
+                      -
+                        type: ticket
+                        id: 96
+                        attributes:
+                          title: 'et quas qui'
+                          status: X
+                          createdAt: '2024-06-10T04:36:14.000000Z'
+                          updatedAt: '2024-06-10T04:36:14.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 6
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/6'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/96'
+                      -
+                        type: ticket
+                        id: 95
+                        attributes:
+                          title: 'et quia eligendi'
+                          status: A
+                          createdAt: '2024-06-10T04:36:14.000000Z'
+                          updatedAt: '2024-06-10T04:36:14.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 6
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/6'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/95'
+                      -
+                        type: ticket
+                        id: 91
+                        attributes:
+                          title: 'et qui voluptatem'
+                          status: X
+                          createdAt: '2024-06-10T04:36:14.000000Z'
+                          updatedAt: '2024-06-10T04:36:14.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 2
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/2'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/91'
+                      -
+                        type: ticket
+                        id: 75
+                        attributes:
+                          title: 'esse consequatur enim'
+                          status: X
+                          createdAt: '2024-06-10T04:36:13.000000Z'
+                          updatedAt: '2024-06-10T04:36:13.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 2
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/2'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/75'
+                      -
+                        type: ticket
+                        id: 76
+                        attributes:
+                          title: 'aut corrupti in'
+                          status: C
+                          createdAt: '2024-06-10T04:36:13.000000Z'
+                          updatedAt: '2024-06-10T04:36:13.000000Z'
+                        relationships:
+                          author:
+                            type: user
+                            id: 4
+                          links:
+                            self: 'http://localhost:8000/api/v1/authors/4'
+                        links:
+                          self: 'http://localhost:8000/api/v1/tickets/76'
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          example: ticket
+                        id:
+                          type: integer
+                          example: 105
+                        attributes:
+                          type: object
+                          properties:
+                            title:
+                              type: string
+                              example: 'Replace this title 3'
+                            status:
+                              type: string
+                              example: A
+                            createdAt:
+                              type: string
+                              example: '2024-06-12T03:35:19.000000Z'
+                            updatedAt:
+                              type: string
+                              example: '2024-06-12T03:35:19.000000Z'
+                        relationships:
+                          type: object
+                          properties:
+                            author:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  example: user
+                                id:
+                                  type: integer
+                                  example: 1
+                            links:
+                              type: object
+                              properties:
+                                self:
+                                  type: string
+                                  example: 'http://localhost:8000/api/v1/authors/1'
+                        links:
+                          type: object
+                          properties:
+                            self:
+                              type: string
+                              example: 'http://localhost:8000/api/v1/tickets/105'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/tickets?page=1'
+                      last:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/tickets?page=7'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/tickets?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 7
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/tickets?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: 'http://localhost:8000/api/v1/tickets?page=2'
+                            label: '2'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/tickets?page=3'
+                            label: '3'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/tickets?page=4'
+                            label: '4'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/tickets?page=5'
+                            label: '5'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/tickets?page=6'
+                            label: '6'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/tickets?page=7'
+                            label: '7'
+                            active: false
+                          -
+                            url: 'http://localhost:8000/api/v1/tickets?page=2'
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://localhost:8000/api/v1/tickets'
+                      per_page:
+                        type: integer
+                        example: 15
+                      to:
+                        type: integer
+                        example: 15
+                      total:
+                        type: integer
+                        example: 103
+      tags:
+        - 'Managing Tickets'
+    post:
+      summary: 'Create a ticket'
+      operationId: createATicket
+      description: 'Create a new ticket. Users can only create  tickets for themsleves. Mangers can create tickets for any user.'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Managing Tickets'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    attributes:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        title:
+                          type: string
+                          description: "The ticket's title (method)."
+                          example: No-example
+                        description:
+                          type: string
+                          description: "The ticket's description."
+                          example: No-example
+                        status:
+                          type: string
+                          description: "The ticket's status."
+                          example: No-example
+                          enum:
+                            - A
+                            - C
+                            - H
+                            - X
+                    relationships:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        author:
+                          type: object
+                          description: ''
+                          example: []
+                          properties:
+                            data:
+                              type: object
+                              description: ''
+                              example: []
+                              properties:
+                                id:
+                                  type: integer
+                                  description: 'The author assigned to the ticket. Must be 1.'
+                                  example: 0
+              required:
+                - data
+tags:
+  -
+    name: Authentication
+    description: ''
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: 'Managing Tickets'
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []

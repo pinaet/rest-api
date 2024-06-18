@@ -28,7 +28,7 @@ class UpdateTicketRequest extends BaseTicketRequest
             'data.relationships.author.data.id' => 'prohibited',
         ];
 
-        if($this->user()->tokenCan(Abilities::UpdateTicket)){
+        if(auth()->user()->tokenCan(Abilities::UpdateTicket)){
             $rules['data.relationships.author.data.id'] = 'sometimes|integer';
         }
 
